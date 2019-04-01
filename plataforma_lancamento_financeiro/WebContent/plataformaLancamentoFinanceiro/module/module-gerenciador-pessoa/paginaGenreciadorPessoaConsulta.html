@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="GerenciadorPessoaModule">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../../resources/style/plataformalancamentofinanceiro.css" />
+    <link rel="stylesheet" href="../../resources/style/bootstrap-select.min.css" />
+    <script type="text/javascript" src="../../resources/library/angular-js-v1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="../module-gerenciador-pessoa/module-gerenciador-pessoa-controller/GerenciadorPessoaController.js"></script>
+    <script src="../../resources/script/plataformalancamentofinanceiro.js"></script>
+    <script src="../../resources/script/bootstrap-select.min.js"></script>
+    <title>Plataforma de Lançamento Financeiro</title>
+</head>
+
+<body ng-controller="gerenciadorPessoaController">
+
+    <div class="card-header card-header-inverse">
+        <h4 class="card-header-title">Gerenciador Cadastro de Pessoa</h4>
+    </div>
+
+    <div class="card-body">
+
+        <div class="form-group col-md-12">
+            <h5>Gerenciador de Pessoa</h5>
+            <div class="card-body">
+                <table class="table table-hover m-b-0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Tipo Pessoa</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pessoaModelResult in gerenciadorPessoaModelResultList track by $index">
+                            <td>{{pessoaModelResult.codigo}}</td>
+                            <td>{{pessoaModelResult.nome}}</td>
+                            <td>{{pessoaModelResult.tipoPessoaEnumeration}}</td>
+                            <td> 
+                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
+                                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
