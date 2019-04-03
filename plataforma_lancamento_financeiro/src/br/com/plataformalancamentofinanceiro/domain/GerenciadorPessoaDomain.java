@@ -17,7 +17,7 @@ import br.com.plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
 @Entity
 @Table(name = "TB_PESSOA")
 @XmlRootElement
-public class PessoaDomain implements Serializable {
+public class GerenciadorPessoaDomain implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -38,9 +38,9 @@ public class PessoaDomain implements Serializable {
 	@Column(name = "IS_ATIVO")
 	private Boolean isAtivo;
 	
-	public PessoaDomain() { }
+	public GerenciadorPessoaDomain() { }
 
-	public PessoaDomain(String nome, TipoPessoaEnumeration tipoPessoaEnumeration, Boolean isFontePagamento, Boolean isAtivo) {
+	public GerenciadorPessoaDomain(String nome, TipoPessoaEnumeration tipoPessoaEnumeration, Boolean isFontePagamento, Boolean isAtivo) {
 		super();
 		this.nome = nome;
 		this.tipoPessoaEnumeration = tipoPessoaEnumeration;
@@ -104,7 +104,7 @@ public class PessoaDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PessoaDomain other = (PessoaDomain) obj;
+		GerenciadorPessoaDomain other = (GerenciadorPessoaDomain) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -115,7 +115,7 @@ public class PessoaDomain implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PessoaDomain [nome=" + nome + ", tipoPessoaEnumeration=" + tipoPessoaEnumeration + "]";
+		return "GerenciadorPessoaDomain [nome=" + nome + ", tipoPessoaEnumeration=" + tipoPessoaEnumeration + "]";
 	}
 	
 }
