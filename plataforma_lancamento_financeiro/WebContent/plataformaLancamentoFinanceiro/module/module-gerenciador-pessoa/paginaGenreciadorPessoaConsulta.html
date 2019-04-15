@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="GerenciadorPessoaModule">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,14 +12,44 @@
     <script src="../../resources/script/bootstrap-select.min.js"></script>
     <title>Plataforma de Lançamento Financeiro</title>
 </head>
-
 <body ng-controller="gerenciadorPessoaController">
 
-    <div class="card-header card-header-inverse">
-        <h4 class="card-header-title">Gerenciador Cadastro de Pessoa</h4>
-    </div>
+	<div class="card-header card-header-inverse">
+		<h4 class="card-header-title">Gerenciador Cadastro de Pessoa</h4>
+	</div>
+	
+	<div class="card-body">
+    	
+    	<form id="cadastrarGerenciamentoPessoaFormulario" class="row row-space-10 m-b-10">
 
-    <div class="card-body">
+             <div class="form-group col-md-8">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" ng-model="gerenciadorPesoaModel.nome" type="text" placeholder="Nome da Pessoa" class="form-control" />
+            </div>
+            
+             <div class="form-group col-md-4">
+                <label for="tipoPessoaEnumeration">Categoria da Pessoa</label>
+                <select id="tipoPessoaEnumeration" name="tipoPessoaEnumeration" ng-model="gerenciadorPesoaModel.tipoPessoaEnumeration" data-style="btn-default" data-live-search="false" class="form-control" >
+                    <option selected="true">Selecione</option>
+                    <option>Pessoa Física</option>
+                    <option>Pessoa Jurídica</option>
+                    <option>Pessoa Autoridade</option>
+                    <option>Pessoa Sistema</option>
+                </select>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <button id="saveButton" type="submit" ng-click="persist(gerenciadorPesoaModel)" class="btn btn-primary btn-block">Cadastrar {{gerenciadorPesoaModel.tipoPessoaEnumeration}}</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="cancelButton" type="button" ng-click="clear()" class="btn btn-danger btn-block">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+    	</form>
 
         <div class="form-group col-md-12">
             <h5>Gerenciador de Pessoa</h5>
@@ -39,14 +68,32 @@
                             <td>{{pessoaModelResult.codigo}}</td>
                             <td>{{pessoaModelResult.nome}}</td>
                             <td>{{pessoaModelResult.tipoPessoaEnumeration}}</td>
-                            <td> 
-                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
-                                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                            <td>
+                                <a href="#" ng-click="remove(pessoaModelResult)" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
+                                <a href="#" ng-click="merge(pessoaModelResult)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <div>
+            	<p>Resultados Encontrados: {{gerenciadorPessoaModelResultList.length}} / 5</p>
+            </div>
+
+            <div class="form-group col-md-12">
+				<ul class="pagination m-b-10 m-t-0">
+					<li class="page-item disabled"><a href="#" class="page-link"><span>&laquo;</span></a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link"> <span>&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+            
         </div>
 
     </div>
