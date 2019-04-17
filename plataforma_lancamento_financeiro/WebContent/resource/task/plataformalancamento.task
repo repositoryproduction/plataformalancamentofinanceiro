@@ -10,9 +10,14 @@
 			- Validar se a pessoa ja estiver sido cadastrada
 			- Emitir mensagens de suscesso ou de erro de acordo com as validacoes
 			- O sistema deve ordernar os dados no datatable pelo nome da pessoa
-			- Implementar paginação dos resultados do datatable
 		
 		- [Em Execução]
+			
+			- Implementar pesquisa no datatable de resultados
+				- Implementar compo de pesquisa
+				- Implementar funcionalidade de pesquisa
+				
+			- Implementar paginação dos resultados do datatable
 		
 		- [Finalizado]
 			- Salvar Pessoa do Sistema
