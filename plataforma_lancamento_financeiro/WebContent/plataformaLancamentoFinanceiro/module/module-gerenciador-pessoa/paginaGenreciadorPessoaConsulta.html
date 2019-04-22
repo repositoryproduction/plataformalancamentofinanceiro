@@ -50,28 +50,42 @@
             </div>
 
     	</form>
+		
+		<!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+		<div class="form-group col-md-8">
+				<input id="procurar" 
+				       name="procurar" 
+			           type="text"
+			           ng-model="procurar"
+				       placeholder="Procurar" 
+				       class="form-control" />
+		</div>
 
-        <div class="form-group col-md-12">
+		<div class="form-group col-md-12">
             <h5>Gerenciador de Pessoa</h5>
             <div class="card-body">
                 <table class="table table-hover m-b-0">
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Tipo Pessoa</th>
+                        	<!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+                            <th ng-click="ordenar('codigo')">Código</th>
+                            <th ng-click="ordenar('nome')">Nome</th>
+                            <th ng-click="ordenar('tipoPessoaEnumeration')">Tipo Pessoa</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pessoaModelResult in gerenciadorPessoaModelResultList track by $index">
-                            <td>{{pessoaModelResult.codigo}}</td>
-                            <td>{{pessoaModelResult.nome}}</td>
-                            <td>{{pessoaModelResult.tipoPessoaEnumeration}}</td>
+                        <tr ng-repeat="pessoaModelResult in gerenciadorPessoaModelResultList|filter:procurar|orderBy:sortKey:reverse">
+                        
+                        <!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.codigo}}</td>
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.nome}}</td>
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.tipoPessoaEnumeration}}</td>
                             <td>
                                 <a href="#" ng-click="remove(pessoaModelResult)" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
                                 <a href="#" ng-click="merge(pessoaModelResult)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                             </td>
+                            
                         </tr>
                     </tbody>
                 </table>

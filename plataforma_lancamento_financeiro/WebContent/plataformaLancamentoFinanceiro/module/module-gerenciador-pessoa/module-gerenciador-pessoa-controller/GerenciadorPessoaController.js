@@ -12,21 +12,21 @@ gerenciadorPessoaModule.controller('gerenciadorPessoaController', function($scop
      * Funcionalidade: Responsavel por recuperar os dados do cadastro de pessoas
 	 * URL do Servico de Gerenciador de Pessoa
      */
-    URL_PESSOA_SERVICE = 'http://localhost:18080/plataforma_lancamento_financeiro/rest/pessoaRest';
+    URL_PESSOA_SERVICE = 'http://localhost:8080/plataforma_lancamento_financeiro/rest/pessoaRest';
     
     /**
      * Funcionalidade: Responsavel por recuperar os dados do 'Gerenciador de Pessoa'
      */
-//    $http.get(URL_PESSOA_SERVICE).then(function(response) {
-//        $scope.gerenciadorPessoaModelResultList = response.data;
-//    });
+    $http.get(URL_PESSOA_SERVICE).then(function(response) {
+        $scope.gerenciadorPessoaModelResultList = response.data;
+    });
 
     /*
      * Responsável por recuperar as opcoes do Tipo de Pessoa
      * */
-    $http.get(URL_PESSOA_SERVICE).then(function(response) {
-    	$scope.gerenciadorPessoaTipoPessoaModelList = response.data;
-    });
+//    $http.get(URL_PESSOA_SERVICE).then(function(response) {
+//    	$scope.gerenciadorPessoaTipoPessoaModelList = response.data;
+//    });
 
     /**
      * Funcionalidade:	Responsavel por limpar formulario
@@ -123,6 +123,15 @@ gerenciadorPessoaModule.controller('gerenciadorPessoaController', function($scop
 	    	isAtivo: true
 	   }
     	return gerenciadorPesoaModelParametroResult;
+    };
+    
+    // FIXME [DESENVOLVIMENTO] {N} -- ""
+    /**
+     * Funcionalidade:	Ordenar dados do datatable
+     * */
+    $scope.ordenar = function(keyname){
+        $scope.sortKey = keyname;
+        $scope.reverse = !$scope.reverse;
     };
 
 });
