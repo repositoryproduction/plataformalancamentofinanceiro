@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="GerenciadorPessoaModule">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,40 +12,102 @@
     <script src="../../resources/script/bootstrap-select.min.js"></script>
     <title>Plataforma de Lançamento Financeiro</title>
 </head>
-
 <body ng-controller="gerenciadorPessoaController">
 
-    <div class="card-header card-header-inverse">
-        <h4 class="card-header-title">Gerenciador Cadastro de Pessoa</h4>
-    </div>
+	<div class="card-header card-header-inverse">
+		<h4 class="card-header-title">Gerenciador Cadastro de Pessoa</h4>
+	</div>
+	
+	<div class="card-body">
+    	
+    	<form id="cadastrarGerenciamentoPessoaFormulario" class="row row-space-10 m-b-10">
 
-    <div class="card-body">
+             <div class="form-group col-md-8">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" ng-model="gerenciadorPesoaModel.nome" type="text" placeholder="Nome da Pessoa" class="form-control" />
+            </div>
+            
+             <div class="form-group col-md-4">
+                <label for="tipoPessoaEnumeration">Categoria da Pessoa</label>
+                <select id="tipoPessoaEnumeration" name="tipoPessoaEnumeration" ng-model="gerenciadorPesoaModel.tipoPessoaEnumeration" data-style="btn-default" data-live-search="false" class="form-control" >
+                    <option selected="true">Selecione</option>
+                    <option>Pessoa Física</option>
+                    <option>Pessoa Jurídica</option>
+                    <option>Pessoa Autoridade</option>
+                    <option>Pessoa Sistema</option>
+                </select>
+            </div>
 
-        <div class="form-group col-md-12">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <button id="saveButton" type="submit" ng-click="persist(gerenciadorPesoaModel)" class="btn btn-primary btn-block">Cadastrar {{gerenciadorPesoaModel.tipoPessoaEnumeration}}</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="cancelButton" type="button" ng-click="clear()" class="btn btn-danger btn-block">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+    	</form>
+		
+		<!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+		<div class="form-group col-md-8">
+				<input id="procurar" 
+				       name="procurar" 
+			           type="text"
+			           ng-model="procurar"
+				       placeholder="Procurar" 
+				       class="form-control" />
+		</div>
+
+		<div class="form-group col-md-12">
             <h5>Gerenciador de Pessoa</h5>
             <div class="card-body">
                 <table class="table table-hover m-b-0">
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Tipo Pessoa</th>
+                        	<!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+                            <th ng-click="ordenar('codigo')">Código</th>
+                            <th ng-click="ordenar('nome')">Nome</th>
+                            <th ng-click="ordenar('tipoPessoaEnumeration')">Tipo Pessoa</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pessoaModelResult in gerenciadorPessoaModelResultList track by $index">
-                            <td>{{pessoaModelResult.codigo}}</td>
-                            <td>{{pessoaModelResult.nome}}</td>
-                            <td>{{pessoaModelResult.tipoPessoaEnumeration}}</td>
-                            <td> 
-                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
-                                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                        <tr ng-repeat="pessoaModelResult in gerenciadorPessoaModelResultList|filter:procurar|orderBy:sortKey:reverse">
+                        
+                        <!-- FIXME [DESENVOLVIMENTO] {N} -- "" -->
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.codigo}}</td>
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.nome}}</td>
+                            <td ng-dblclick="merge(pessoaModelResult)">{{pessoaModelResult.tipoPessoaEnumeration}}</td>
+                            <td>
+                                <a href="#" ng-click="remove(pessoaModelResult)" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
+                                <a href="#" ng-click="merge(pessoaModelResult)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                             </td>
+                            
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <div>
+            	<p>Mostrando {{1}} até {{gerenciadorPessoaModelResultList.length}} de um total de {{100}} registros</p>
+            </div>
+
+            <div class="form-group col-md-12">
+				<ul class="pagination m-b-10 m-t-0">
+					<li class="page-item disabled"><a href="#" class="page-link"><span>&laquo;</span></a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link"> <span>&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+            
         </div>
 
     </div>
